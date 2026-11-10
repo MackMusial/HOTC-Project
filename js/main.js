@@ -1,4 +1,4 @@
-/* Heart of the City Development Center — shared header/footer, nav, tabs and forms.
+/* Heart of the City Development Center — shared header/footer, nav and forms.
    The header and footer live here so all six pages stay in sync: edit them once. */
 
 // TODO(hookup): paste the deployed Google Apps Script web app URL here (see apps-script/Code.gs).
@@ -11,8 +11,7 @@ const CONTACT = {
   email: "yourrecipe4healing@gmail.com",
   web: "www.heartofthecity989.com",
   webHref: "https://www.heartofthecity989.com",
-  // TODO(client): real Facebook URL for "HOTC: Healing, Hope, & Growth"
-  facebookHref: "#",
+  facebookHref: "https://www.facebook.com/p/HOTC-Healing-Hope-Growth-61593542165706/",
 };
 
 const NAV = [
@@ -66,7 +65,7 @@ function renderLayout() {
   document.body.prepend(sprite);
 
   const navLinks = (cls) =>
-    NAV.map(
+    NAV.filter((n) => cls === "footer" || n.id !== "contact").map(
       (n) =>
         `<li><a href="${n.href}"${n.tab ? ` data-tab="${n.tab}"` : ""}${
           cls === "nav" && n.id === page ? ' aria-current="page"' : ""
@@ -74,22 +73,22 @@ function renderLayout() {
     ).join("");
 
   document.getElementById("site-header").innerHTML = `
-    <div class="topbar"><div class="wrap">
-      <a href="${CONTACT.phoneHref}">${icon("phone")} ${CONTACT.phone}</a>
-      <a href="mailto:${CONTACT.email}">${icon("mail")} ${CONTACT.email}</a>
-    </div></div>
     <div class="site-header"><div class="wrap">
       <a class="brand" href="index.html">
-        <img src="assets/logo/hotc-logo-160.png" alt="" width="132" height="160">
-        <span class="brand-name">Heart of the City<br>Development Center<small>Your Recipe for Healing</small></span>
+        <img src="assets/logo/hotc-logo-160.png" alt="Heart of the City Development Center home" width="132" height="160">
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">${icon("menu")}</button>
-      <nav class="nav" id="site-nav" aria-label="Main"><ul>${navLinks("nav")}</ul></nav>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <ul>${navLinks("nav")}</ul>
+        <a class="social" href="${CONTACT.facebookHref}" aria-label="Facebook">${icon("facebook")}</a>
+        <a class="btn btn--purple" href="contact.html">Contact Us</a>
+      </nav>
     </div></div>`;
 
   document.getElementById("site-footer").innerHTML = `
     <section class="newsletter" aria-labelledby="newsletter-title"><div class="wrap">
       <div>
+        <p class="eyebrow">Sign Up</p>
         <h2 id="newsletter-title">Stay Connected. Stay Inspired.</h2>
         <p>Be the first to hear about exciting programs, upcoming events, community initiatives, and opportunities to get involved at Heart of the City Development Center—delivered straight to your inbox.</p>
       </div>
@@ -101,22 +100,22 @@ function renderLayout() {
     </div></section>
     <footer class="site-footer">
       <div class="wrap footer-grid">
+        <img class="footer-logo" src="assets/logo/hotc-logo-600.png" alt="Heart of the City Development Center logo" width="600" height="726" loading="lazy">
         <div class="footer-brand">
-          <img src="assets/logo/hotc-logo-600.png" alt="Heart of the City Development Center logo" width="600" height="726" loading="lazy">
-          <p class="statement">A place to learn, grow, engage &amp; heal.</p>
+          <p class="statement-line">A place to learn, grow, engage &amp; heal.</p>
+          <p>First United Methodist Church (Rear Entrance)<br>4790 Gratiot Rd.<br>Saginaw, MI 48638</p>
         </div>
         <div>
-          <h2>Explore</h2>
+          <h2>Our Work</h2>
           <ul class="footer-nav">${navLinks("footer")}</ul>
         </div>
         <div>
           <h2>Contact</h2>
           <ul class="contact-list">
-            <li>${icon("map-pin")} <span>First United Methodist Church (Rear Entrance)<br>4790 Gratiot Rd., Saginaw, MI 48638</span></li>
             <li>${icon("phone")} <a href="${CONTACT.phoneHref}">${CONTACT.phone}</a></li>
             <li>${icon("mail")} <a href="mailto:${CONTACT.email}">${CONTACT.email}</a></li>
             <li>${icon("globe")} <a href="${CONTACT.webHref}">${CONTACT.web}</a></li>
-            <li>${icon("facebook")} <a href="${CONTACT.facebookHref}">HOTC: Healing, Hope, &amp; Growth</a> <span class="ph">[PLACEHOLDER: Facebook link]</span></li>
+            <li>${icon("facebook")} <a href="${CONTACT.facebookHref}">HOTC: Healing, Hope, &amp; Growth</a></li>
           </ul>
         </div>
       </div>
@@ -129,31 +128,6 @@ function renderLayout() {
   toggle.addEventListener("click", () => {
     const open = nav.classList.toggle("open");
     toggle.setAttribute("aria-expanded", String(open));
-  });
-}
-
-/* "Our Key Focus" tabs: click or use the arrow keys */
-function initTabs() {
-  document.querySelectorAll(".tabs").forEach((root) => {
-    const tabs = [...root.querySelectorAll('[role="tab"]')];
-    const select = (tab, focus) => {
-      tabs.forEach((t) => {
-        const on = t === tab;
-        t.setAttribute("aria-selected", String(on));
-        t.tabIndex = on ? 0 : -1;
-        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
-      });
-      if (focus) tab.focus();
-    };
-    tabs.forEach((tab, i) => {
-      tab.addEventListener("click", () => select(tab));
-      tab.addEventListener("keydown", (e) => {
-        const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
-        if (!step) return;
-        e.preventDefault();
-        select(tabs[(i + step + tabs.length) % tabs.length], true);
-      });
-    });
   });
 }
 
@@ -198,5 +172,4 @@ function initForms() {
 }
 
 renderLayout();
-initTabs();
 initForms();

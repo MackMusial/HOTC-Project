@@ -16,4 +16,4 @@ Push this folder to a GitHub repo, then Settings > Pages > Deploy from branch > 
 ## Finding what's unfinished
 - Search for `[PLACEHOLDER` to find content still needed from the client or the old site.
 - Search for `draft-tag` to find wording written by us that the client should review.
-- Search for `TODO(` to find the form hookup and the Facebook link.
+- Search for `TODO(` to find the form hookup.
