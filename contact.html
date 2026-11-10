@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Heart of the City Development Center</title>
+  <meta name="description" content="Call, email, or visit Heart of the City Development Center at 4790 Gratiot Rd., Saginaw, Michigan.">
+  <link rel="icon" href="assets/logo/hotc-logo-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Nunito:wght@400;700;800;900&family=Oswald:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="contact">
+  <a class="skip" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Contact</p>
+        <h1>Talk to Our Team</h1>
+        <p>Looking for a safe, supportive, and inclusive space where you or someone you love can learn, grow, engage, heal, and thrive?</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap grid grid--2">
+        <div>
+          <h2>Find us</h2>
+          <p class="lead">Call or send us a message, and we'll walk you through our services.</p>
+          <ul class="contact-list">
+            <li>
+              <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
+              <span><strong>Location</strong><br>First United Methodist Church (Rear Entrance)<br>4790 Gratiot Rd.<br>Saginaw, MI 48638</span>
+            </li>
+            <li>
+              <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+              <span><strong>Phone</strong><br><a href="tel:+15172193425">(517) 219-3425</a></span>
+            </li>
+            <li>
+              <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+              <span><strong>Email</strong><br><a href="mailto:yourrecipe4healing@gmail.com">yourrecipe4healing@gmail.com</a></span>
+            </li>
+            <li>
+              <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></span>
+              <span><strong>Website</strong><br><a href="https://www.heartofthecity989.com">www.heartofthecity989.com</a></span>
+            </li>
+            <li>
+              <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg></span>
+              <span><strong>Facebook</strong><br><a href="#">HOTC: Healing, Hope, &amp; Growth</a><br><span class="ph">[PLACEHOLDER: Facebook and other social media links]</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Send us a message</h2>
+          <!-- TODO(hookup): submissions go to FORM_ENDPOINT in js/main.js (Google Apps Script → email + Google Sheet). -->
+          <form class="form" data-form="contact" novalidate>
+            <div class="row">
+              <label>Name <input type="text" name="name" required autocomplete="name"></label>
+              <label>Email <input type="email" name="email" required autocomplete="email"></label>
+            </div>
+            <div class="row">
+              <label>Phone (optional) <input type="tel" name="phone" autocomplete="tel"></label>
+              <label>I'm interested in
+                <select name="interest">
+                  <option>Adult Programming (16–55)</option>
+                  <option>Youth (K–15) and Families</option>
+                  <option>Volunteering</option>
+                  <option>Donating or sponsoring</option>
+                  <option>Something else</option>
+                </select>
+              </label>
+            </div>
+            <label>Message <textarea name="message" rows="5" required></textarea></label>
+            <label class="hp" aria-hidden="true">Leave this blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+            <button class="btn" type="submit">Send Message</button>
+            <p class="form-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" aria-labelledby="map-title">
+      <div class="wrap">
+        <h2 id="map-title" class="center">Visit us</h2>
+        <p class="center">We're at First United Methodist Church. Please use the rear entrance.</p>
+        <iframe class="map" title="Map showing 4790 Gratiot Rd., Saginaw, MI 48638" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=4790+Gratiot+Rd,+Saginaw,+MI+48638&output=embed"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
