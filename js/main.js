@@ -9,8 +9,6 @@ const CONTACT = {
   phone: "(517) 219-3425",
   phoneHref: "tel:+15172193425",
   email: "yourrecipe4healing@gmail.com",
-  web: "www.heartofthecity989.com",
-  webHref: "https://www.heartofthecity989.com",
   facebookHref: "https://www.facebook.com/p/HOTC-Healing-Hope-Growth-61593542165706/",
 };
 
@@ -114,7 +112,6 @@ function renderLayout() {
           <ul class="contact-list">
             <li>${icon("phone")} <a href="${CONTACT.phoneHref}">${CONTACT.phone}</a></li>
             <li>${icon("mail")} <a href="mailto:${CONTACT.email}">${CONTACT.email}</a></li>
-            <li>${icon("globe")} <a href="${CONTACT.webHref}">${CONTACT.web}</a></li>
             <li>${icon("facebook")} <a href="${CONTACT.facebookHref}">HOTC: Healing, Hope, &amp; Growth</a></li>
           </ul>
         </div>
@@ -171,5 +168,26 @@ function initForms() {
   });
 }
 
+function initAnimations() {
+  const header = document.querySelector(".site-header");
+  const onScroll = () => header && header.classList.toggle("is-scrolled", window.scrollY > 80);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const items = document.querySelectorAll("main .section .center, main .card, main .program, main .split > *, main .photo-row img, main .service-list li, main .cta");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  items.forEach((el) => {
+    const sibs = el.parentElement ? [...el.parentElement.children] : [];
+    el.style.setProperty("--i", Math.min(sibs.indexOf(el), 5));
+    el.classList.add("reveal");
+    io.observe(el);
+  });
+  document.documentElement.classList.add("js-anim");
+}
+
 renderLayout();
 initForms();
+initAnimations();
