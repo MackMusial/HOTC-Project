@@ -120,7 +120,7 @@ function renderLayout() {
         </div>
       </div>
       <div class="footer-bar"><span>Education</span><span>Empowerment</span><span>Inclusion</span><span>Support</span><span>Healing</span><span>Stronger Communities</span></div>
-      <p class="footer-legal">© ${new Date().getFullYear()} Heart of the City Development Center</p>
+      <p class="footer-legal">© ${new Date().getFullYear()} Heart of the City Development Center · <a href="terms.html">Terms of Use &amp; Privacy</a></p>
     </footer>`;
 
   const toggle = document.querySelector(".nav-toggle");
