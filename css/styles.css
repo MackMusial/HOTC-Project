@@ -179,10 +179,9 @@ p { margin: 0 0 1em; }
 .duo .btn { margin-top: auto; }
 @media (max-width: 760px) { .duo { grid-template-columns: 1fr; } }
 
-/* Membership badges, four across */
+/* Membership badge (Chamber of Commerce only) */
 .section--snug { padding: clamp(2rem, 4vw, 3rem) 0; }
-.members { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2.5vw, 2.5rem); align-items: start; width: min(100% - 2.5rem, 1100px); }
-@media (max-width: 760px) { .members { grid-template-columns: repeat(2, 1fr); } }
+.members { display: grid; justify-items: center; width: min(100% - 2.5rem, 280px); }
 
 /* Overlapping photo collage on a tinted photo background */
 .collage { position: relative; max-width: 900px; margin-inline: auto; aspect-ratio: 9 / 6; }
@@ -217,12 +216,11 @@ p { margin: 0 0 1em; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 5vw, 4.5rem); align-items: center; }
 .split--media-first .split-media { order: -1; }
 .split-media img { width: 100%; max-height: 540px; object-fit: cover; }
-/* Portrait photo: same shape and size cap at every screen width */
-.split-media--portrait { width: 100%; max-width: 440px; margin-inline: auto; }
-.split-media--portrait img, .split-media--portrait .ph-box { width: 100%; height: auto; max-height: none; aspect-ratio: 4 / 5; }
-.split-media--portrait img { object-fit: cover; object-position: 50% 20%; }
-.ph-box--photo p { margin: 0.75rem 0 0; }
-.ph-photo-icon { width: 4rem; height: 4rem; }
+/* Two overlapping prints (About: Founder's Story). Fixed proportions, so it looks the same at every width. */
+.split-media.photo-pair { position: relative; width: 100%; max-width: 520px; margin-inline: auto; aspect-ratio: 1 / 0.9; overflow: visible; }
+.photo-pair img { position: absolute; max-height: none; height: auto; object-fit: cover; border: 7px solid #fff; box-shadow: 0 14px 32px rgba(31, 26, 43, 0.28); }
+.photo-pair .photo-pair__back { left: 0; top: 3%; width: 90%; aspect-ratio: 16 / 9; rotate: -3deg; }
+.photo-pair .photo-pair__front { right: 2%; bottom: 2%; width: 44%; aspect-ratio: 4 / 5; object-position: 50% 20%; rotate: 3deg; z-index: 1; }
 @media (max-width: 800px) { .split { grid-template-columns: 1fr; } .split--media-first .split-media { order: 0; } }
 
 .values { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.25rem; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.85rem; font-weight: 500; color: var(--accent); margin: 0 0 1rem; padding: 0; list-style: none; }
@@ -270,7 +268,8 @@ p { margin: 0 0 1em; }
 .site-footer h2 { font-size: 0.9rem; font-weight: 600; letter-spacing: 0; color: #fff; margin-bottom: 0.75rem; }
 .footer-nav { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
 .site-footer .contact-list { gap: 0.5rem; }
-.site-footer .contact-list li { align-items: center; gap: 0.6rem; }
+.site-footer .contact-list li { align-items: flex-start; gap: 0.6rem; }
+.site-footer .contact-list .icon { margin-top: 0.2em; }
 .footer-bar { background: var(--purple-deep); color: #fff; text-align: center; padding: 0.9rem 1rem; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.75rem; font-weight: 500; }
 .footer-bar span { display: inline-block; }
 .footer-bar span + span::before { content: "♥"; margin: 0 0.75rem; color: #ff9aa0; }

@@ -9,7 +9,11 @@ const CONTACT = {
   phone: "(517) 219-3425",
   phoneHref: "tel:+15172193425",
   email: "yourrecipe4healing@gmail.com",
+  website: "www.heartofthecity989.com",
+  websiteHref: "https://www.heartofthecity989.com",
   facebookHref: "https://www.facebook.com/p/HOTC-Healing-Hope-Growth-61593542165706/",
+  instagram: "@heartofthecity989",
+  instagramHref: "https://www.instagram.com/heartofthecity989/",
 };
 
 const NAV = [
@@ -27,6 +31,7 @@ const ICONS = {
   mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
   globe: '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
   facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+  instagram: '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>',
   heart: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
   users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
   book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
@@ -79,6 +84,7 @@ function renderLayout() {
       <nav class="nav" id="site-nav" aria-label="Main">
         <ul>${navLinks("nav")}</ul>
         <a class="social" href="${CONTACT.facebookHref}" aria-label="Facebook">${icon("facebook")}</a>
+        <a class="social" href="${CONTACT.instagramHref}" aria-label="Instagram">${icon("instagram")}</a>
         <a class="btn btn--purple" href="contact.html">Contact Us</a>
       </nav>
     </div></div>`;
@@ -100,7 +106,6 @@ function renderLayout() {
         <img class="footer-logo" src="assets/logo/hotc-logo-600.png" alt="Heart of the City Development Center logo" width="600" height="726" loading="lazy">
         <div class="footer-brand">
           <p class="statement-line">A place to learn, grow, engage &amp; heal.</p>
-          <p>First United Methodist Church (Rear Entrance)<br>4790 Gratiot Rd.<br>Saginaw, MI 48638</p>
         </div>
         <div>
           <h2>Our Work</h2>
@@ -109,9 +114,12 @@ function renderLayout() {
         <div>
           <h2>Contact</h2>
           <ul class="contact-list">
+            <li>${icon("map-pin")} <span>First United Methodist Church (Rear Entrance)<br>4790 Gratiot Rd.<br>Saginaw, MI 48638</span></li>
             <li>${icon("phone")} <a href="${CONTACT.phoneHref}">${CONTACT.phone}</a></li>
             <li>${icon("mail")} <a href="mailto:${CONTACT.email}">${CONTACT.email}</a></li>
+            <li>${icon("globe")} <a href="${CONTACT.websiteHref}">${CONTACT.website}</a></li>
             <li>${icon("facebook")} <a href="${CONTACT.facebookHref}">HOTC: Healing, Hope, &amp; Growth</a></li>
+            <li>${icon("instagram")} <a href="${CONTACT.instagramHref}">${CONTACT.instagram}</a></li>
           </ul>
         </div>
       </div>
