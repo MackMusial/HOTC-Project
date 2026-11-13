@@ -181,7 +181,7 @@ p { margin: 0 0 1em; }
 
 /* Membership badges, four across */
 .section--snug { padding: clamp(2rem, 4vw, 3rem) 0; }
-.members { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2.5vw, 2.5rem); align-items: start; width: min(100% - 2.5rem, 1500px); }
+.members { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2.5vw, 2.5rem); align-items: start; width: min(100% - 2.5rem, 1100px); }
 @media (max-width: 760px) { .members { grid-template-columns: repeat(2, 1fr); } }
 
 /* Overlapping photo collage on a tinted photo background */
