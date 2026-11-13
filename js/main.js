@@ -86,7 +86,6 @@ function renderLayout() {
   document.getElementById("site-footer").innerHTML = `
     <section class="newsletter" aria-labelledby="newsletter-title"><div class="wrap">
       <div>
-        <p class="eyebrow">Sign Up</p>
         <h2 id="newsletter-title">Stay Connected. Stay Inspired.</h2>
         <p>Be the first to hear about exciting programs, upcoming events, community initiatives, and opportunities to get involved at Heart of the City Development Center—delivered straight to your inbox.</p>
       </div>
@@ -175,7 +174,7 @@ function initAnimations() {
   onScroll();
 
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const items = document.querySelectorAll("main .section .center, main .card, main .program, main .split > *, main .photo-row img, main .service-list li, main .cta");
+  const items = document.querySelectorAll("main .section .center, main .card, main .focus-card, main .statement > *, main .duo > *, main .split > *, main .service-list li, main .cta");
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
