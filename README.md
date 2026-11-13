@@ -1,5 +1,6 @@
 # Heart of the City Development Center — website draft
 
+# Live site - [Mackmusial](https://mackmusial.github.io/HOTC-Project/)
 Plain HTML/CSS/JS. No build step. Open `index.html` in a browser to preview.
 Project background is in `context.md`.
 
