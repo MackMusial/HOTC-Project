@@ -2,8 +2,14 @@
    The header and footer live here so all six pages stay in sync: edit them once. */
 
 // TODO(hookup): paste the deployed Google Apps Script web app URL here (see apps-script/Code.gs).
-// While this is empty, the contact and newsletter forms show a "not connected yet" message.
+// While this is empty, the contact form shows a "not connected yet" message.
 const FORM_ENDPOINT = "";
+
+// TODO(hookup): paste the MailerLite embedded form's action URL here. In MailerLite: Forms > Embedded forms >
+// "Website sign-up" > HTML code, the <form action="..."> value. It looks like
+// https://assets.mailerlite.com/jsonp/<account id>/forms/<form id>/subscribe
+// While this is empty, the newsletter box shows a "not connected yet" message.
+const NEWSLETTER_ENDPOINT = "";
 
 const CONTACT = {
   phone: "(517) 219-3425",
@@ -87,7 +93,8 @@ function renderLayout() {
         <a class="social" href="${CONTACT.instagramHref}" aria-label="Instagram">${icon("instagram")}</a>
         <a class="btn btn--purple" href="contact.html">Contact Us</a>
       </nav>
-    </div></div>`;
+    </div></div>
+    <div class="announcement" id="site-announcement" role="region" aria-label="Announcement" hidden></div>`;
 
   document.getElementById("site-footer").innerHTML = `
     <section class="newsletter" aria-labelledby="newsletter-title"><div class="wrap">
@@ -135,8 +142,9 @@ function renderLayout() {
   });
 }
 
-/* Contact + newsletter forms post to one Apps Script endpoint, which emails
-   the center and logs a timestamped row in a Google Sheet. */
+/* The contact form posts to an Apps Script endpoint, which emails the center and logs a
+   timestamped row in a Google Sheet. The newsletter box posts straight to MailerLite, which
+   sends the double opt-in email and handles unsubscribes. */
 function initForms() {
   document.querySelectorAll("form[data-form]").forEach((form) => {
     const status = form.querySelector(".form-status");
@@ -150,22 +158,32 @@ function initForms() {
         form.reportValidity();
         return;
       }
-      const data = new URLSearchParams(new FormData(form));
-      if (data.get("website")) return; // honeypot: bots fill this hidden field
-      data.set("form", form.dataset.form);
+      const isNewsletter = form.dataset.form === "newsletter";
+      const fields = new URLSearchParams(new FormData(form));
+      if (fields.get("website")) return; // honeypot: bots fill this hidden field
 
-      if (!FORM_ENDPOINT) {
+      let endpoint, data;
+      if (isNewsletter) {
+        endpoint = NEWSLETTER_ENDPOINT;
+        data = new URLSearchParams({ "fields[email]": fields.get("email"), "ml-submit": "1", anticsrf: "true" });
+      } else {
+        endpoint = FORM_ENDPOINT;
+        data = fields;
+        data.set("form", form.dataset.form);
+      }
+
+      if (!endpoint) {
         say(`Draft site: this form isn't connected yet. Please call ${CONTACT.phone} or email ${CONTACT.email}.`, "warn");
         return;
       }
       const button = form.querySelector('[type="submit"]');
       button.disabled = true;
       try {
-        // Apps Script web apps don't return CORS headers, so the reply can't be read.
+        // Neither Apps Script nor MailerLite returns CORS headers, so the reply can't be read.
         // A resolved request means it was delivered.
-        await fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body: data });
+        await fetch(endpoint, { method: "POST", mode: "no-cors", body: data });
         form.reset();
-        say(form.dataset.form === "newsletter" ? "You're signed up. Thank you!" : "Thank you! We'll be in touch soon.", "ok");
+        say(isNewsletter ? "Almost done! Check your inbox to confirm your sign-up." : "Thank you! We'll be in touch soon.", "ok");
       } catch {
         say(`Something went wrong. Please call ${CONTACT.phone} or email ${CONTACT.email}.`, "warn");
       } finally {

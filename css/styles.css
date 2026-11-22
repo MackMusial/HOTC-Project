@@ -306,3 +306,38 @@ p { margin: 0 0 1em; }
   .site-header { transition: box-shadow 0.25s ease; }
 }
 .site-header.is-scrolled { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); }
+
+/* ---------- Content from the Google Sheet (js/content.js) ---------- */
+
+/* Announcement banner under the header, every page. Hidden until the sheet turns it on. */
+.announcement { background: var(--red); color: #fff; font-weight: 500; }
+.announcement .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.25rem 1rem; padding: 0.7rem 0; text-align: center; }
+.announcement p { margin: 0; }
+.announcement a { color: #fff; font-weight: 600; }
+.announcement a:hover { color: #ffd9a8; }
+
+/* Upcoming events, home page */
+.event-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 1rem; text-align: left; }
+.event { display: flex; gap: 1.25rem; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--accent); padding: 1.1rem 1.25rem; }
+.event-date { flex: none; width: 4rem; margin: 0; text-align: center; line-height: 1.1; color: var(--accent-deep); }
+.event-month { display: block; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 600; }
+.event-day { display: block; font-size: 2rem; font-weight: 600; }
+.event-body h3 { margin-bottom: 0.2em; }
+.event-body p { margin: 0 0 0.4em; }
+.event-meta { color: var(--muted); font-size: 0.9rem; }
+.event-link { font-weight: 600; font-size: 0.9rem; }
+.events-empty { color: var(--muted); }
+
+/* Board members, About page */
+.board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 240px)); justify-content: center; gap: 2rem 1.5rem; margin-top: 2rem; }
+.board-member { text-align: center; }
+.board-member h3 { margin: 0.9rem 0 0.15rem; }
+.board-member p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.board-photo { width: min(180px, 100%); aspect-ratio: 1; margin-inline: auto; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: var(--accent); color: #fff; font-size: 2.2rem; font-weight: 600; border: 5px solid #fff; box-shadow: 0 8px 20px rgba(31, 26, 43, 0.15); }
+.board-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Videos, home page. The section stays hidden until the sheet has a video. */
+.video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 540px)); justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+.video { margin: 0; }
+.video iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; background: #000; }
+.video figcaption { margin-top: 0.5rem; font-weight: 500; }
