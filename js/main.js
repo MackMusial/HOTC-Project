@@ -1,9 +1,7 @@
 /* Heart of the City Development Center — shared header/footer, nav and forms.
    The header and footer live here so all six pages stay in sync: edit them once. */
 
-// TODO(hookup): paste the deployed Google Apps Script web app URL here (see apps-script/Code.gs).
-// While this is empty, the contact form shows a "not connected yet" message.
-const FORM_ENDPOINT = "";
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbySRYRLQD_grwI3_xP_kidjH2SHMYKOtRyT350mUSJGHJfuWNJs3AtwTUqyXyyDNMzX/exec";
 
 // TODO(hookup): paste the MailerLite embedded form's action URL here. In MailerLite: Forms > Embedded forms >
 // "Website sign-up" > HTML code, the <form action="..."> value. It looks like
